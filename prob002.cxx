@@ -10,7 +10,7 @@ void fibonacciGenerator()
 {
 	//Change target to set what number you want added to.
 	int target = 4000000;
-    int retVal = 0;
+	int retVal = 0;
 	int smallerNum = 1;
 	int biggerNum = 2;
 	int tempNum;
