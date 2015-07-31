@@ -5,23 +5,22 @@
 */
 
 #include <iostream>
-#include <math.h>
 
 int fibonacciGenerator()
 {
 	//Change target to set what number you want added to.
 	long long int target = 600851475143;
 	long long int retVal;
-	bool keepGoing = true;
+	int i;
 	
-	retVal = target / 2; //Don't need to check anything above half, cant be a factor.
-	
-	while (keepGoing)
+	for (i=2; i<=target; i++)
 	{
-		if (target % retVal == 0)
-			keepGoing = false;
-		else
-			retVal--;
+		if (target % i == 0) //if we find a factor, remove it and keep going
+		{
+			retVal = i;
+			target /= i;
+			i = 2;
+		}
 	}
 	
 	return retVal;
