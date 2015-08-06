@@ -3,14 +3,16 @@
 	
 	Problem 11 is to find the greatest product of 4 adjacent numbers in a 20 x 20 grid.
 	These numbers can be horizontal, vertical, or diagonal.
+	This will look a little weird because these numbers are represented as a block on
+	projecteuler, and an array is a line.
 */
 
 #include <iostream>
 
-int *arrayLoader()
+int* arrayLoader()
 {
-	int *arrayLoadee = new int[400];
-	arrayLoadee =
+	//int *arrayLoadee = new int[400];
+	int arrayLoadee[] =
 		{8,  2,  22, 97, 38, 15,  0, 40,  0, 75,  4,  5,  7, 78, 52, 12, 50, 77, 91,  8,
 		 49, 49, 99, 40, 17, 81, 18, 57, 60, 87, 17, 40, 98, 43, 69, 48 , 4, 56, 62,  0,
 		 81, 49, 31, 73, 55, 79, 14, 29, 93, 71, 40, 67, 53, 88, 30,  3, 49, 13, 36, 65,
@@ -32,26 +34,53 @@ int *arrayLoader()
 		 20, 73, 35, 29, 78, 31, 90,  1, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57,  5, 54,
 		  1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52,  1, 89, 19, 67, 48};
 	
-	return arrayLoadee;
+	int* arrayReturn = arrayLoadee;
+	
+	return arrayReturn;
 }
 
 
 void gridFinder()
 {
 	
-	int *numArray = arrayLoader();
-	std::cout << numArray[0];
+	int retVal = 0;
+	int temp;
+	int i, j;
 	
-	//check horizontal
-	//for i=0, i<400, i+=20
-	//for j=0, j<17, j++
-	//check i+j, i+j+1, i+j+2, i+j+3
+	int* numArray = arrayLoader();	//Load the array of numbers
 	
-	//check vertical
+	for (i=0; i<400; i+=20)			//Check horizontal combinations
+	{
+		for (j=0; j<17; j++)
+		{
+			temp = numArray[i+j+0] * numArray[i+j+1] * numArray[i+j+2] * numArray[i+j+3];
+			if (temp > retVal)
+				retVal = temp;
+		}
+	}
+	for (i=0; i<340; i+=20)			//Check vertical combinations
+	{
+		for (j=0; j<20; j++)
+		{
+			temp = numArray[i+j+0] * numArray[i+j+20] * numArray[i+j+40] * numArray[i+j+60];
+			if (temp > retVal)
+				retVal = temp;
+		}
+	}
+	for (i=0; i<340; i+=20)			//Check diagonal combinations
+	{
+		for (j=0; j<17; j++)
+		{
+			temp = numArray[i+j+0] * numArray[i+j+21] * numArray[i+j+42] * numArray[i+j+63];
+			if (temp > retVal)
+				retVal = temp;
+			temp = numArray[i+j+60] * numArray[i+j+41] * numArray[i+j+22] * numArray[i+j+3];
+			if (temp > retVal)
+				retVal = temp;
+		}
+	}
 	
-	//check diagonal
-	
-	//check diagonal other way
+	std::cout << retVal;
 	
 	return;
 }
