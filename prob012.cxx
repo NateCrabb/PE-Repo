@@ -2,8 +2,13 @@
 	Project Euler problem 12
 	
 	Problem 12 is to find the first triangle number that has more than 500 divisors
+	The smallest number with over 500 divisors has the divisors 1, 2, 3, .., 500, 501
+	
 	Triangle numbers have a pattern of odd, odd, even, even, odd, etc...
 	Our triangle number will be even, so it takes advantege of powers of 2
+	Index   1  2  3  4   5   6   7   8   9   10
+	Tnumber 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, ...
+	Triangle number for an index 'x' is x(x+1) /2
 */
 
 #include <iostream>
