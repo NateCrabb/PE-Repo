@@ -9,6 +9,10 @@
 	Index   1  2  3  4   5   6   7   8   9   10
 	Tnumber 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, ...
 	Triangle number for an index 'x' is x(x+1) /2
+	
+	32
+	1,2,4,8,16,32
+	1,2,2,2, 2, 2
 */
 
 #include <iostream>
@@ -17,44 +21,36 @@ int triangleNumberFactorFinder()
 {
 	int retVal;
 	int factorNum = 0;
-	int triNumIndex = 0;
-	int triNumValue = 0;
+	float triNumIndex = 0;
+	float triNumValue = 0;
 	int target = 500;		//Change this to adjust how many divisors you want
+	float deFactored;
+	int i;
 	
 	while (factorNum <= target)
 	{
+		std::cout << factorNum << "\t" << triNumValue << "\n";
 		triNumIndex++;
 		triNumValue += triNumIndex;
+		deFactored = triNumValue;
+		factorNum = 1;
+		i = 2;
 		
-		triNumIndex++;
-		triNumValue += triNumIndex;
-		
-		triNumIndex++;
-		triNumValue += triNumIndex;
-		retVal = triNumValue;
-		factorNum = 0;
-		
-		for (int i=1; i<=triNumIndex; i++)
-			if (triNumIndex % i == 0)
-				factorNum++;
-		if (factorNum > target)
-			return retVal;
-			
-		triNumIndex++;
-		triNumValue += triNumIndex;
-		retVal = triNumValue;
-		factorNum = 0;
-		
-		for (int i=1; i<=triNumIndex; i++)
+		while (deFactored != 1)
 		{
-			if (triNumIndex % i == 0)
+			if (deFactored % i == 0)
+			{
+				deFactored /= i;
 				factorNum++;
-			//if (triNumIndex == 17500)
-			//	std::cout << i << " at 500 and factorNum is " << factorNum << "\n";
-			if (i == triNumIndex)
-				std::cout << "Index is " << i << " and factorNum is " << factorNum << "\n";
+				i = 2;
+			}
+			else
+			{
+				i++;
+			}
 		}
-		//std::cout << "factorNum is " << factorNum << " and triNumValue is " << triNumValue << " and triNumIndex is " << triNumIndex << "\n";
+		
+		retVal = factorNum;
 	}
 	
 	return retVal;
