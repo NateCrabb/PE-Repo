@@ -13,9 +13,14 @@
 	32
 	1,2,4,8,16,32
 	1,2,2,2, 2, 2
+	
+	20				So this is wrong. This method misses 2 factors, because 2 is used
+	1,2,3,4			in 4 and 10. Back to the drawing board.
+	1,2,2,5
 */
 
 #include <iostream>
+#include <math.h>
 
 int triangleNumberFactorFinder()
 {
@@ -26,10 +31,10 @@ int triangleNumberFactorFinder()
 	int target = 500;		//Change this to adjust how many divisors you want
 	float deFactored;
 	int i;
-	
+	std::cout << "Made it here";
 	while (factorNum <= target)
 	{
-		std::cout << factorNum << "\t" << triNumValue << "\n";
+		//std::cout << factorNum << "and then " << triNumValue << "waffles\n";
 		triNumIndex++;
 		triNumValue += triNumIndex;
 		deFactored = triNumValue;
@@ -38,7 +43,7 @@ int triangleNumberFactorFinder()
 		
 		while (deFactored != 1)
 		{
-			if (deFactored % i == 0)
+			if (fmod(deFactored, i) == 0)
 			{
 				deFactored /= i;
 				factorNum++;
